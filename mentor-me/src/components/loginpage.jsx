@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import "./loginpage.css";
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../UserContext.js";
-// import { socket } from "../client.js";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -15,7 +14,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/users/login`, {
+      const response = await fetch(`http://localhost:5001/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,40 +29,9 @@ function Login() {
         localStorage.setItem("id", loggedInUser.id);
         localStorage.setItem("user", JSON.stringify(loggedInUser));
         updateUser(loggedInUser);
-
-        // socket.emit("user_connected", { userID: loggedInUser.id });
-        // let uid = loggedInUser.id;
-
-        // socket.on("mentor_online", (data) => {
-        //   alert(`Your connected mentor ${data.mentorID} is now online!`);
-        // });
-        // socket.on("mentee_online", (data) => {
-        //   alert(`Your connected mentee ${data.menteeID} is now online!`);
-        // });
-
-        const profileCheckResponse = await fetch(
-          `http://localhost:3000/profile/${loggedInUser.id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        );
-
-        if (profileCheckResponse.ok) {
-          const data = await profileCheckResponse.json();
-          if (data.accountType === "Mentee") {
-            navigate("/mentee");
-          } else {
-            navigate("/mentor");
-          }
-        } else {
-          navigate("/home");
-        }
+        navigate("/home");
       } else {
-        alert("Login failed");
+        alert("Login Failed!");
       }
     } catch (error) {
       alert("Login failed: " + error);
