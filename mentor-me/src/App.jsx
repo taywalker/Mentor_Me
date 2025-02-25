@@ -1,6 +1,7 @@
 import "./App.css";
 import Login from "./components/loginpage";
 import Signup from "./components/signup";
+import FeedPage from "./components/feedpage";
 import { useState, useEffect } from "react";
 import { UserContext } from "./UserContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -26,6 +27,7 @@ function App() {
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Login />} />
+            <Route path="/feedpage" element={<FeedPage />} />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
