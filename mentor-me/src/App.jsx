@@ -2,6 +2,7 @@ import "./App.css";
 import Login from "./components/loginpage";
 import Signup from "./components/signup";
 import FeedPage from "./components/feedpage";
+import MeetingPage from "./components/meetingpage";
 import { useState, useEffect } from "react";
 import { UserContext } from "./UserContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Login />} />
             <Route path="/feedpage" element={<FeedPage />} />
+            <Route path="/meetingpage" element={<MeetingPage />} />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
